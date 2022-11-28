@@ -6,8 +6,8 @@ use GuzzleHttp\Client;
 
 class UnifonicClient implements UnifonicClientContract
 {
-    const API_URL = 'https://el.cloud.unifonic.com/rest/';
-    const ENDPOINT_MESSAGES = 'SMS/messages';
+    const API_URL = 'https://api.unifonic.com/rest/';
+    const ENDPOINT_MESSAGES = 'Messages';
 
     private $client;
 
@@ -86,7 +86,7 @@ class UnifonicClient implements UnifonicClientContract
      */
     public function send(int $recipient, string $message, string $senderID = null): object
     {
-        return $this->postRequest(self::ENDPOINT_MESSAGES, [
+        return $this->postRequest(self::ENDPOINT_MESSAGES.'/Send', [
             'Recipient' => $recipient,
             'Body' => $message,
             'SenderID' => $senderID
